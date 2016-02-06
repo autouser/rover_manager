@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Rover do
-
-  let(:rover) { Rover.new x: 1, y: 2, orientation: 'N' }
+  let(:plateau) {Plateau.new max_x: 9, max_y: 9}
+  let(:rover)   { Rover.new x: 1, y: 2, orientation: 'N', plateau: plateau }
 
   context "#initialize" do
     context "when attributes are correct" do
@@ -91,6 +91,16 @@ describe Rover do
         expect{ rover.orientation = 'Q' }.to raise_error(Rover::InvalidOrientation)
       end
     end
+  end
+
+  context "#plateau" do
+    context "when is a kind of Plateau" do
+      it "sets attribute" do
+        new_plateau = Plateau.new(max_x: 9, max_y: 9)
+        expect { rover.plateau = new_plateau }.not_to raise_error
+        expect( rover.plateau ).to eq(new_plateau)
+      end
+    end    
   end
 
 

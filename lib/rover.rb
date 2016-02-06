@@ -1,6 +1,6 @@
 class Rover
 
-  attr_reader :x, :y, :orientation
+  attr_reader :x, :y, :orientation, :plateau
 
   ORIENTATIONS = %w{ N O S W }
 
@@ -8,6 +8,7 @@ class Rover
     self.x            = args[:x]
     self.y            = args[:y]
     self.orientation  = args[:orientation]
+    self.plateau      = args[:plateau]
   end
 
   def x= (arg=nil)
@@ -25,6 +26,12 @@ class Rover
     @orientation = arg
   end
 
+  def plateau= (arg)
+    raise Rover::InvalidPlateau unless arg.kind_of? Plateau
+    @plateau = arg
+  end
+
   class InvalidOrientation < ArgumentError; end
+  class InvalidPlateau < ArgumentError; end
 
 end
