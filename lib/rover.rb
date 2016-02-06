@@ -33,6 +33,28 @@ class Rover
     @plateau = arg
   end
 
+  def rotate_right
+    idx = ORIENTATIONS.find_index(orientation)
+    self.orientation = ORIENTATIONS[idx + 1] || ORIENTATIONS[0]
+  end
+
+  def rotate_left
+    idx = ORIENTATIONS.find_index(orientation)
+    self.orientation = ORIENTATIONS[idx-1]
+  end
+
+  def move
+    if orientation == 'N'
+      self.y += 1
+    elsif orientation == 'S'
+      self.y -= 1
+    elsif orientation == 'O'
+      self.x += 1
+    elsif orientation == 'W'
+      self.x -= 1
+    end
+  end
+
   class InvalidOrientation < ArgumentError; end
   class InvalidPlateau < ArgumentError; end
   class OutOfRange < ArgumentError; end

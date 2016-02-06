@@ -115,5 +115,60 @@ describe Rover do
     end    
   end
 
+  context "#rotate_right" do
+    context "when orientation W" do
+      it "rotates to N" do
+        rover.orientation = 'W'
+        rover.rotate_right
+        expect( rover.orientation ).to eq('N')
+      end
+    end
+  end
+
+  context "#rotate_left" do
+    context "when orientation N" do
+      it "rotates to W" do
+        rover.orientation = 'N'
+        rover.rotate_left
+        expect( rover.orientation ).to eq('W')
+      end
+    end
+  end
+
+  context "#move" do
+    context "move N" do
+      it "changes y from 2 to 3" do
+        rover.orientation = 'N'
+        expect{ rover.move }.to change{rover.y}.from(2).to(3)
+      end
+    end
+  end
+
+  context "#move" do
+    context "move N" do
+      it "changes y from 2 to 1" do
+        rover.orientation = 'S'
+        expect{ rover.move }.to change{rover.y}.from(2).to(1)
+      end
+    end
+  end
+
+  context "#move" do
+    context "move O" do
+      it "changes x from 1 to 0" do
+        rover.orientation = 'O'
+        expect{ rover.move }.to change{rover.x}.from(1).to(2)
+      end
+    end
+  end
+
+  context "#move" do
+    context "move W" do
+      it "changes x from 1 to 0" do
+        rover.orientation = 'W'
+        expect{ rover.move }.to change{rover.x}.from(1).to(0)
+      end
+    end
+  end
 
 end
