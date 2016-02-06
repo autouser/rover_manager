@@ -15,22 +15,33 @@ module RoverManager
     output = ''
 
     # Init plateau
-    plateau_coords = lines.shift.strip.split(/\s+/).map(&:to_i)
+    plateau_coords_raw = lines.shift.strip.split(/\s+/)
+    raise WrongPlateau if (plateau_coords_raw[0] !~ /^(\d+)$/) || (plateau_coords_raw[1] !~ /^(\d+)$/)
+    plateau_coords = plateau_coords_raw.map(&:to_i)
+
     plateau = Plateau.new max_x: plateau_coords[0], max_y: plateau_coords[1]
 
     while !lines.empty?
 
       # Init rover
-      (x,y,orientation) = lines.shift.strip.split(/\s+/)
-      rover = Rover.new plateau: plateau, x: x.to_i, y: y.to_i, orientation: orientation
+      begin
+        (x,y,orientation) = lines.shift.strip.split(/\s+/)
+        rover = Rover.new plateau: plateau, x: x.to_i, y: y.to_i, orientation: orientation
+      rescue
+        raise WrongRoverPosition
+      end
 
       # Move rover
-      cmd = lines.shift.gsub!(/\s+/,'').split('')
-      cmd.each do |code|
-        action = MOVEMENT_ACTIONS[code] || raise("Invalid code '#{code}'")
-        rover.send action
+      begin
+        cmd = lines.shift.gsub!(/\s+/,'').split('')
+        cmd.each do |code|
+          action = MOVEMENT_ACTIONS[code] || raise("Invalid code '#{code}'")
+          rover.send action
+        end
+        output += rover.output + "\n"
+      rescue
+        raise RoverCantMove
       end
-      output += rover.output + "\n"
     end
 
     output
@@ -41,5 +52,7 @@ module RoverManager
   end
 
   class NotAPositiveInteger < ArgumentError; end
-
+  class WrongPlateau < RuntimeError; end
+  class WrongRoverPosition < RuntimeError; end
+  class RoverCantMove < RuntimeError; end
 end
