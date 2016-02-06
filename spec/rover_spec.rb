@@ -45,6 +45,12 @@ describe Rover do
       end
     end
 
+    context "when is more than plateau max_x" do
+      it "raises 'OutOfRange' error" do
+        expect { rover.x = 10 }.to raise_error(Rover::OutOfRange)
+      end
+    end
+
   end
 
   context "#y" do
@@ -71,6 +77,12 @@ describe Rover do
     context "when is a negative integer" do
       it "raises 'NotAPositiveInteger' error" do
         expect { rover.y = -5 }.to raise_error(RoverManager::NotAPositiveInteger)
+      end
+    end
+
+    context "when is more than plateau max_y" do
+      it "raises 'OutOfRange' error" do
+        expect { rover.y = 10 }.to raise_error(Rover::OutOfRange)
       end
     end
 
