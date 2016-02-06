@@ -2,7 +2,7 @@ class Rover
 
   attr_reader :x, :y, :orientation, :plateau
 
-  ORIENTATIONS = %w{ N O S W }
+  ORIENTATIONS = %w{ N E S W }
 
   def initialize(args={})
     self.plateau      = args[:plateau]
@@ -48,11 +48,15 @@ class Rover
       self.y += 1
     elsif orientation == 'S'
       self.y -= 1
-    elsif orientation == 'O'
+    elsif orientation == 'E'
       self.x += 1
     elsif orientation == 'W'
       self.x -= 1
     end
+  end
+
+  def output
+    "#{x} #{y} #{orientation}"
   end
 
   class InvalidOrientation < ArgumentError; end

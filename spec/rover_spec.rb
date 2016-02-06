@@ -89,9 +89,9 @@ describe Rover do
   end
 
   context "#orientation" do
-    context "when is an 'N','O','S','W'" do
+    context "when is an 'N','E','S','W'" do
       it "sets attribute" do
-        %w{ N O S W }.each do |orientation|
+        %w{ N E S W }.each do |orientation|
           expect { rover.orientation = orientation }.not_to raise_error
           expect( rover.orientation ).to                    eq(orientation)
         end
@@ -154,9 +154,9 @@ describe Rover do
   end
 
   context "#move" do
-    context "move O" do
+    context "move E" do
       it "changes x from 1 to 0" do
-        rover.orientation = 'O'
+        rover.orientation = 'E'
         expect{ rover.move }.to change{rover.x}.from(1).to(2)
       end
     end
