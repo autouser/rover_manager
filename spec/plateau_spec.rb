@@ -30,19 +30,19 @@ describe Plateau do
 
     context "when is not a number" do
       it "raises 'NotAPositiveInteger' error" do
-        expect { plateau.max_x = 'wrong' }.to raise_error(Plateau::NotAPositiveInteger)
+        expect { plateau.max_x = 'wrong' }.to raise_error(RoverManager::NotAPositiveInteger)
       end
     end
 
     context "when is not an integer" do
       it "raises 'NotAPositiveInteger' error" do
-        expect { plateau.max_x = 5.5 }.to raise_error(Plateau::NotAPositiveInteger)
+        expect { plateau.max_x = 5.5 }.to raise_error(RoverManager::NotAPositiveInteger)
       end
     end
 
     context "when is a negative integer" do
       it "raises 'NotAPositiveInteger' error" do
-        expect { plateau.max_x = -5 }.to raise_error(Plateau::NotAPositiveInteger)
+        expect { plateau.max_x = -5 }.to raise_error(RoverManager::NotAPositiveInteger)
       end
     end
 
@@ -60,19 +60,19 @@ describe Plateau do
 
     context "when is not a number" do
       it "raises 'NotAPositiveInteger' error" do
-        expect { plateau.max_y = 'wrong' }.to raise_error(Plateau::NotAPositiveInteger)
+        expect { plateau.max_y = 'wrong' }.to raise_error(RoverManager::NotAPositiveInteger)
       end
     end
 
     context "when is not an integer" do
       it "raises 'NotAPositiveInteger' error" do
-        expect { plateau.max_y = 5.5 }.to raise_error(Plateau::NotAPositiveInteger)
+        expect { plateau.max_y = 5.5 }.to raise_error(RoverManager::NotAPositiveInteger)
       end
     end
 
     context "when is a negative integer" do
       it "raises 'NotAPositiveInteger' error" do
-        expect { plateau.max_y = -5 }.to raise_error(Plateau::NotAPositiveInteger)
+        expect { plateau.max_y = -5 }.to raise_error(RoverManager::NotAPositiveInteger)
       end
     end
 

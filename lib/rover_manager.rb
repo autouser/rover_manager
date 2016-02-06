@@ -3,5 +3,11 @@ require "plateau"
 require "rover"
 
 module RoverManager
-  # Your code goes here...
+  
+  def self.positive_integer?(arg=nil)
+    !arg.nil? && arg.is_a?(Integer) && (arg > 0)
+  end
+
+  class NotAPositiveInteger < ArgumentError; end
+
 end
