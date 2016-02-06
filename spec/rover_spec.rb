@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe RoverManager do
+describe Rover do
   pending "Not implemented yet"
 end
